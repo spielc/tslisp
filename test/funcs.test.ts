@@ -10,8 +10,7 @@
  * <http://www.gnu.org/licenses/>
  */
 
-import { cons, fromArray, List, toArray, len, find, filter, map } from "../src/tslisp";
-import { append } from "../build/src/funcs";
+import { cons, fromArray, List, toArray, len, find, filter, map, append } from "../src/tslisp";
 
 function checkList(maxValue: number, list: List<number>): void {
     let curVal = 0;
