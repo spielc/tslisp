@@ -11,6 +11,7 @@
  */
 
 import { cons, fromArray, List, toArray, len, find, filter, map } from "../src/tslisp";
+import { append } from "../build/src/funcs";
 
 function checkList(maxValue: number, list: List<number>): void {
     let curVal = 0;
@@ -185,5 +186,35 @@ describe("map test", () => {
         }
         const avg = (count > 0) ? sum / count : 0;
         expect(avg).toBe(45);
+    });
+});
+
+describe("append test", () => {
+    it("append empty list to empty list", () => {
+        const res = append(fromArray([]), fromArray([]));
+        expect(res).toBeUndefined();
+    });
+    it("append empty list to regular list", () => {
+        const res = append(fromArray([0, 1, 2]), fromArray([]));
+        checkList(2, res);
+        expect(len(res)).toBe(3);
+    });
+    it("append regular list to empty list", () => {
+        const res = append(fromArray([]), fromArray([0, 1, 2]));
+        checkList(2, res);
+        expect(len(res)).toBe(3);
+    });
+    it("append regular list to empty list", () => {
+        const res = append(fromArray([0, 1, 2]), fromArray([0, 1, 2]));
+        expect(len(res)).toBe(6);
+    });
+    it("check immutability", () => {
+        const list1 = fromArray([0, 1, 2]);
+        const list2 = fromArray([0, 1, 2]);
+        const res = append(list1, list2);
+        const filtered = filter(list1, (val) => val === 0);
+        expect(len(filtered)).toBe(1);
+        expect(len(list1)).toBe(3);
+        expect(len(list2)).toBe(3);
     });
 });

@@ -121,3 +121,17 @@ export function map<T, U>(list: List<T>, mapFunc: (val: Optional<T>) => U): List
     }
     return cons(mapFunc(list.value), map(list.next, mapFunc));
 }
+
+/**
+ * Append list2 to list1 and return the result as a new list
+ * @param list1 the first list
+ * @param list2 the second list
+ */
+export function append<T>(list1: List<T>, list2: List<T>): List<T> {
+    if (list1) {
+        return cons(list1.value, append(list1.next, list2));
+    } else if (list2) {
+        return cons(list2.value, append(list1, list2.next));
+    }
+    return undefined;
+}
