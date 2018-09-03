@@ -10,7 +10,7 @@
  * <http://www.gnu.org/licenses/>
  */
 
-import { cons, fromArray, List, toArray, len, find, filter, map, append } from "../src/tslisp";
+import { cons, fromArray, List, toArray, len, find, filter, map, append, nth } from "../src/tslisp";
 
 function checkList(maxValue: number, list: List<number>): void {
     let curVal = 0;
@@ -215,5 +215,33 @@ describe("append test", () => {
         expect(len(filtered)).toBe(1);
         expect(len(list1)).toBe(3);
         expect(len(list2)).toBe(3);
+    });
+});
+
+describe("nth test", () => {
+    it("empty list and negative index", () => {
+        expect(nth(fromArray([]), -1)).toBeUndefined();
+    });
+    it("empty list and zero index", () => {
+        expect(nth(fromArray([]), 0)).toBeUndefined();
+    });
+    it("empty list and positive index", () => {
+        expect(nth(fromArray([]), 3)).toBeUndefined();
+    });
+    it("non-empty list and negative index", () => {
+        expect(nth(fromArray([0, 1, 2]), -1)).toBeUndefined();
+    });
+    it("non-empty list and zero index", () => {
+        const res = nth(fromArray([0, 1, 2]), 0);
+        expect(res).not.toBeUndefined();
+        expect(res!.value).toBe(0);
+    });
+    it("non-empty list and valid index", () => {
+        const res = nth(fromArray([0, 1, 2]), 1);
+        expect(res).not.toBeUndefined();
+        expect(res!.value).toBe(1);
+    });
+    it("non-empty list and out-of-bounds index", () => {
+        expect(nth(fromArray([0, 1, 2]), 10)).toBeUndefined();
     });
 });

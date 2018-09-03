@@ -135,3 +135,20 @@ export function append<T>(list1: List<T>, list2: List<T>): List<T> {
     }
     return undefined;
 }
+
+/**
+ * Retrieve the n-th element of the list. If index < 0 or index >= list-length undefined is returned.
+ * @param list the list
+ * @param index the index of the element
+ */
+export function nth<T>(list: List<T>, index: number): List<T> {
+    if (index < 0 || list === undefined) {
+        return undefined;
+    } else {
+        if (index === 0) {
+            return list;
+        } else {
+            return nth(list.next, index - 1);
+        }
+    }
+}

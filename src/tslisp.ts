@@ -12,4 +12,4 @@
 
 export { Cell, List } from "./cell";
 
-export { cons, fromArray, toArray, len, find, filter, map, append } from "./funcs";
+export { cons, fromArray, toArray, len, find, filter, map, append, nth } from "./funcs";
