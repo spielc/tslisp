@@ -14,7 +14,7 @@
  * Type for a generic, immutable Cons-cell
  */
 export type Cell<T> = {
-    readonly value: T | undefined;
+    readonly value: T;
     readonly next: Cell<T> | undefined;
 };
 

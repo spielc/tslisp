@@ -81,7 +81,7 @@ export function len<T>(list: List<T>): number {
  * @param list the list
  * @param pred the predicate
  */
-export function find<T>(list: List<T>, pred: (val: Optional<T>) => boolean): List<T> {
+export function find<T>(list: List<T>, pred: (val: T) => boolean): List<T> {
     if (list) {
         if (pred(list.value)) {
             return list;
@@ -97,8 +97,8 @@ export function find<T>(list: List<T>, pred: (val: Optional<T>) => boolean): Lis
  * @param list the list
  * @param pred the predicate
  */
-export function filter<T>(list: List<T>, pred: (val: Optional<T>) => boolean): List<T> {
-    function filterAcc(acc: Optional<T>[], list: List<T>, pred: (val: Optional<T>) => boolean): List<T> {
+export function filter<T>(list: List<T>, pred: (val: T) => boolean): List<T> {
+    function filterAcc(acc: T[], list: List<T>, pred: (val:T) => boolean): List<T> {
         const elem = find(list, pred);
         if (elem) {
             acc.push(elem.value);
