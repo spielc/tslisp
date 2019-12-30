@@ -98,7 +98,7 @@ export function find<T>(list: List<T>, pred: (val: T) => boolean): List<T> {
  * @param pred the predicate
  */
 export function filter<T>(list: List<T>, pred: (val: T) => boolean): List<T> {
-    function filterAcc(acc: T[], list: List<T>, pred: (val:T) => boolean): List<T> {
+    function filterAcc(acc: T[], list: List<T>, pred: (val: T) => boolean): List<T> {
         const elem = find(list, pred);
         if (elem) {
             acc.push(elem.value);
